@@ -10,6 +10,7 @@ def displayBoard():
     print(board[3], " | ", board[4], " | ", board[5])
     print(board[6], " | ", board[7], " | ", board[8])
 
+
 def playGame():
     global gameStillGoing
     while gameStillGoing:
@@ -34,14 +35,15 @@ def placePlay(currentPlayer):
         displayBoard()
         print("Invaild Option, choose a different position from 1-9:")
         position = input()
-    
-    while board[int(position)] == "X" or board[int(position)] == "O":
+
+    if board[int(position)] == "-":
+        position = int(position) - 1
+        board[position] = currentPlayer
+    else:
         displayBoard()
         print("Invaild Option, choose a different position from 1-9:")
         position = input()
 
-    position = int(position) - 1
-    board[position] = currentPlayer
 
 def decideWinner():
     checkIfWin()
