@@ -31,17 +31,21 @@ def placePlay(currentPlayer):
     print(currentPlayer + "'s turn")
     print("Choose a position from 1-9:")
     position = input()
-    while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-        displayBoard()
-        print("Invaild Option, choose a different position from 1-9:")
-        position = input()
-    
-    position = int(position) - 1
+    valid = False
+    while not valid:
+        while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            displayBoard()
+            print("Invaild Option, choose a different position from 1-9:")
+            position = input()
+        
+        position = int(position) - 1
 
-    while board[position] != "-":
-        displayBoard()
-        print("Invaild Option, choose a different position from 1-9:")
-        position = input()
+        if board[position] == "-":
+            valid = True
+        else:
+            displayBoard()
+            print("Invaild Option, choose a different position from 1-9:")
+            position = input()
 
     board[position] = currentPlayer
 
